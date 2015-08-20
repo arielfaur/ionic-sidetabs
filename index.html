@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Ionic-sidetabs by arielfaur</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Ionic-sidetabs</h1>
+        <h2>Side tabs component for Ionic</h2>
+        <a href="https://github.com/arielfaur/ionic-sidetabs" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="ionic-sidetabs" class="anchor" href="#ionic-sidetabs" aria-hidden="true"><span class="octicon octicon-link"></span></a>ionic-sidetabs</h1>
+
+<p>This module creates side tabs for Ionic. Side tabs are useful to organize a lot of information that wouldn't fit in smaller screen devices.
+It is also an easy way to reveal information that can be easily expanded/collapsed when scrolling is not desirable.</p>
+
+<ul>
+<li>Tabs are easily customized</li>
+<li>Uses hardware accelerated CSS - great performance!</li>
+<li>Integrates with Ionic's themes</li>
+<li>Multiple tabs are automatically stacked vertically - see examples below</li>
+<li>Exposes interface for expand/collapse events</li>
+</ul>
+
+<h2>
+<a id="install-module" class="anchor" href="#install-module" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install module</h2>
+
+<p>To get you started you can simply install via bower</p>
+
+<p><code>bower install ionic-sidetabs</code></p>
+
+<p>Then include <code>ion-sidetabs.js</code> in your HTML</p>
+
+<pre><code> &lt;script src="js/ion-sidetabs.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<h2>
+<a id="add-dependencies-to-your-app" class="anchor" href="#add-dependencies-to-your-app" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add dependencies to your App</h2>
+
+<pre><code>angular.module('starter', ['ionic', 'starter.controllers', 'ionic-sidetabs'])
+</code></pre>
+
+<h2>
+<a id="directives" class="anchor" href="#directives" aria-hidden="true"><span class="octicon octicon-link"></span></a>Directives</h2>
+
+<h3>
+<a id="ion-side-tabs" class="anchor" href="#ion-side-tabs" aria-hidden="true"><span class="octicon octicon-link"></span></a>ion-side-tabs</h3>
+
+<p>Defines a group of tabs to be stacked vertically. It also exposes the onExpand and onCollapse callbacks.</p>
+
+<pre><code>&lt;ion-side-tabs on-expand="tabExpand(index)" on-collapse="tabCollapse(index)"&gt;
+...
+&lt;/ion-side-tabs&gt;
+</code></pre>
+
+<h3>
+<a id="ion-side-tab" class="anchor" href="#ion-side-tab" aria-hidden="true"><span class="octicon octicon-link"></span></a>ion-side-tab</h3>
+
+<p>Defines a single tab. Tabs can be customized using Ionic's theme classes. Special styling such as rounded corners must
+be specified via inline styles</p>
+
+<pre><code>&lt;ion-side-tab class="dark-bg" style="border-radius: 10px;"&gt;
+  &lt;ion-side-tab-handle width="40" height="50" toggle="ion-chevron-left ion-chevron-right" class="dark-bg stable" style="border-radius: 10px 0 0 10px"&gt;&lt;i class="icon ion-chevron-left"&gt;&lt;/i&gt;&lt;/ion-side-tab-handle&gt;
+  &lt;div class="list card"&gt;
+    &lt;div class="item item-divider"&gt;Upcoming&lt;/div&gt;
+    &lt;div class="item item-body item-stable"&gt;
+      &lt;div&gt;
+        You have &lt;b&gt;229&lt;/b&gt; meetings on your calendar tomorrow.
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="list card"&gt;
+    &lt;div class="item item-divider"&gt;Upcoming&lt;/div&gt;
+    &lt;div class="item item-body item-stable"&gt;
+      &lt;div&gt;
+        You have &lt;b&gt;21&lt;/b&gt; meetings on your calendar tomorrow.
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/ion-side-tab&gt;
+</code></pre>
+
+<h3>
+<a id="ion-side-tab-handle" class="anchor" href="#ion-side-tab-handle" aria-hidden="true"><span class="octicon octicon-link"></span></a>ion-side-tab-handle</h3>
+
+<p>Defines the handle that triggers expand and collapse events. It also supports dragging to open the tab manually.
+Use <code>width</code> and <code>height</code> to control the handle size. To include text or icons, simply add them as child elements.
+If using Ionicons, the <code>toggle</code> parameter can be used to show a specific icon for each state.</p>
+
+<pre><code>&lt;ion-side-tab-handle width="40" height="50" toggle="ion-chevron-left ion-chevron-right" class="dark-bg stable" style="border-radius: 10px 0 0 10px"&gt;
+    &lt;i class="icon ion-chevron-left"&gt;&lt;/i&gt;
+&lt;/ion-side-tab-handle&gt;
+</code></pre>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/arielfaur/ionic-sidetabs/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/arielfaur/ionic-sidetabs/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/arielfaur/ionic-sidetabs"></a> is maintained by <a href="https://github.com/arielfaur">arielfaur</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
