@@ -39,7 +39,7 @@ Defines a group of tabs to be stacked vertically. It also exposes the onExpand a
 ````
 
 
-### ionSideTab
+### ion-side-tab
 Defines a single tab. Tabs can be customized using Ionic's theme classes. Special styling such as rounded corners must
 be specified via inline styles
 
@@ -65,7 +65,7 @@ be specified via inline styles
 </ion-side-tab>
 ````
 
-### ionSideTabHandle
+### ion-side-tab-handle
 Defines the handle that triggers expand and collapse events. It also supports dragging to open the tab manually.
 Use ```width``` and ```height``` to control the handle size. To include text or icons, simply add them as child elements.
 If using Ionicons, the ```toggle``` parameter can be used to show a specific icon for each state.
