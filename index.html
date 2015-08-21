@@ -40,6 +40,8 @@ It is also an easy way to reveal information that can be easily expanded/collaps
 <li>Integrates with Ionic's themes</li>
 <li>Multiple tabs are automatically stacked vertically - see examples below</li>
 <li>Exposes interface for expand/collapse events</li>
+<li>Detects device orientation and adjusts tab position automatically</li>
+<li>Works on iOS and Android (requires Chromium WebView available in Android 4.4+ or use Crosswalk)</li>
 </ul>
 
 <h2><a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h2>
@@ -81,7 +83,7 @@ It is also an easy way to reveal information that can be easily expanded/collaps
 <a id="ion-side-tab" class="anchor" href="#ion-side-tab" aria-hidden="true"><span class="octicon octicon-link"></span></a>ion-side-tab</h3>
 
 <p>Defines a single tab. Tabs can be customized using Ionic's theme classes. Special styling such as rounded corners must
-be specified via inline styles</p>
+be specified via inline styles or additional css classes.</p>
 
 <pre><code>&lt;ion-side-tab class="dark-bg" style="border-radius: 10px;"&gt;
   &lt;ion-side-tab-handle width="40" height="50" toggle="ion-chevron-left ion-chevron-right" class="dark-bg stable" style="border-radius: 10px 0 0 10px"&gt;&lt;i class="icon ion-chevron-left"&gt;&lt;/i&gt;&lt;/ion-side-tab-handle&gt;
