@@ -2,4 +2,63 @@
   <ion-content>
     <h1>Browse</h1>
   </ion-content>
+  <ion-side-tabs on-expand="tabExpand(index)" on-collapse="tabCollapse(index)">
+    <ion-side-tab class="dark-bg" style="border-radius: 10px;">
+      <ion-side-tab-handle width="40" height="50" class="dark-bg stable" style="border-radius: 10px 0 0 10px;box-shadow: 0 2px 1px #ddd">A</ion-side-tab-handle>
+      <div class="list card">
+        <div class="item item-divider">Upcoming</div>
+        <div class="item item-body item-stable">
+          <div>
+            You have <b>229</b> meetings on your calendar tomorrow.
+          </div>
+        </div>
+      </div>
+      <div class="list card">
+        <div class="item item-divider">Upcoming</div>
+        <div class="item item-body item-stable">
+          <div>
+            You have <b>21</b> meetings on your calendar tomorrow.
+          </div>
+        </div>
+      </div>
+    </ion-side-tab>
+    <ion-side-tab class="positive-bg" style="border-radius: 10px;">
+      <ion-side-tab-handle width="40" height="50"  class="positive-bg" style="border-radius: 10px 0 0 10px; box-shadow: 0 2px 1px">B</ion-side-tab-handle>
+      <div class="list card">
+        <div class="item item-divider">Upcoming</div>
+        <div class="item item-body item-stable">
+          <div>
+            You have <b>229</b> meetings on your calendar tomorrow.
+          </div>
+        </div>
+      </div>
+      <div class="list card">
+        <div class="item item-divider">Upcoming</div>
+        <div class="item item-body item-stable">
+          <div>
+            You have <b>21</b> meetings on your calendar tomorrow.
+          </div>
+        </div>
+      </div>
+    </ion-side-tab>
+    <ion-side-tab class="assertive-bg" style="border-radius: 10px;">
+      <ion-side-tab-handle width="90" height="50" class="assertive-bg" style="border-radius: 10px 0 0 10px; box-shadow: 0 2px 1px">C to Z</ion-side-tab-handle>
+      <div class="list card">
+        <div class="item item-divider">Upcoming</div>
+        <div class="item item-body item-stable">
+          <div>
+            You have <b>229</b> meetings on your calendar tomorrow.
+          </div>
+        </div>
+      </div>
+      <div class="list card">
+        <div class="item item-divider">Upcoming</div>
+        <div class="item item-body item-stable">
+          <div>
+            You have <b>21</b> meetings on your calendar tomorrow.
+          </div>
+        </div>
+      </div>
+    </ion-side-tab>
+  </ion-side-tabs>
 </ion-view>
