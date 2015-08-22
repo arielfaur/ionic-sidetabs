@@ -50,6 +50,13 @@ angular.module('starter.controllers', [])
     { title: 'Rap', id: 5 },
     { title: 'Cowbell', id: 6 }
   ];
+  $scope.tabExpand = function(index) {
+    console.log('Tab ' + index + ' expanded');
+  };
+
+  $scope.tabCollapse = function(index) {
+    console.log('Tab ' + index + ' collapsed');
+  };
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {

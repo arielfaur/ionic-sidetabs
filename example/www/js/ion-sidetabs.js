@@ -4,6 +4,8 @@ angular.module('ionic-sidetabs', [])
           restrict: 'AE',
           transclude: true,
           template: '<ng-transclude></ng-transclude>',
+          controllerAs: 'ionSideTabsCtrl',
+          bindToController: true,
           scope: {
               onExpand: '&',
               onCollapse: '&'
@@ -22,7 +24,7 @@ angular.module('ionic-sidetabs', [])
           scope: true,
           transclude: true,
           template: '<ng-transclude></ng-transclude>',
-          require: '^ionSideTabs',
+          require: '?^ionSideTabs',
           controller: function($scope, $element) {
               var tabClass = document.querySelector('.tabs') ? (document.querySelector('.tabs-bottom') ? 'has-tabs' : 'has-tabs-top') : '',
                 headerClass = document.querySelector('.bar-header') ? ' has-header' : '',
@@ -73,10 +75,10 @@ angular.module('ionic-sidetabs', [])
 
                   if (!isExpanded) {
                       lastPosX = handleWidth;
-                      $scope.$parent.$parent.onExpand({ index: $scope.tab.index});
+                    $scope.tab && $scope.tab.onExpand({ index: $scope.tab.index});
                   } else {
                       lastPosX = expandedWidth;
-                      $scope.$parent.$parent.onCollapse({ index: $scope.tab.index});
+                    $scope.tab && $scope.tab.onCollapse({ index: $scope.tab.index});
                   }
                   $element.css({'-webkit-transform': 'translate3d(' + lastPosX + 'px, 0, 0)', transform: 'translate3d(' + lastPosX + 'px, 0, 0)'});
 
@@ -92,8 +94,13 @@ angular.module('ionic-sidetabs', [])
               init();
           },
           link: function (scope, element, attrs, controller) {
-              scope.tab = {};
-              scope.tab.index = controller.addTab();
+              if (controller) {
+                scope.tab = {
+                  index: controller.addTab(),
+                  onExpand: controller.onExpand,
+                  onCollapse: controller.onCollapse
+                };
+              }
           }
       }
   }])
