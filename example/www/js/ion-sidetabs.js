@@ -18,14 +18,14 @@ angular.module('ionic-sidetabs', [])
           }
       }
   }])
-  .directive('ionSideTab', ['$timeout', function($timeout) {
+  .directive('ionSideTab', ['$timeout', '$window', function($timeout, $window) {
       return {
           restrict: 'AE',
           scope: true,
           transclude: true,
           template: '<ng-transclude></ng-transclude>',
           require: '?^ionSideTabs',
-          controller: function($scope, $element) {
+          controller: ['$scope', '$element', function($scope, $element) {
               var tabClass = document.querySelector('.tabs') ? (document.querySelector('.tabs-bottom') ? 'has-tabs' : 'has-tabs-top') : '',
                 headerClass = document.querySelector('.bar-header') ? ' has-header' : '',
                 posX = 0, lastPosX = 0, handleWidth = 0, isExpanded = false,
@@ -34,7 +34,6 @@ angular.module('ionic-sidetabs', [])
               function init() {
                   $element.addClass('padding scroll-content ionic-scroll ' + tabClass + headerClass);
                   $element.css({transition: '300ms ease-in-out', overflow: 'visible', margin: '0 auto'});
-                  //container.style.boxShadow = '-1px 1px #888';
                   computeWidths();
               }
 
@@ -85,14 +84,14 @@ angular.module('ionic-sidetabs', [])
                   isExpanded = !isExpanded;
               };
 
-              window.addEventListener('orientationchange', function() {
+              $window.addEventListener('orientationchange', function() {
                   $timeout(function() {
                     computeWidths();
                   }, 500);
               });
 
               init();
-          },
+          }],
           link: function (scope, element, attrs, controller) {
               if (controller) {
                 scope.tab = {
@@ -136,7 +135,6 @@ angular.module('ionic-sidetabs', [])
 
               $ionicGesture.on('drag dragstart dragend', controller.onDrag, element);
               $ionicGesture.on('tap', onTap, element);
-
 
               scope.$parent.$watch ('tab.index', function(index) {
                   if (index==0) return;
