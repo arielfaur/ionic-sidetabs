@@ -18,7 +18,7 @@ angular.module('ionic-sidetabs', [])
           }
       }
   }])
-  .directive('ionSideTab', ['$timeout', '$window', function($timeout, $window) {
+  .directive('ionSideTab', ['$timeout', '$window', '$ionicPlatform', function($timeout, $window, $ionicPlatform) {
       return {
           restrict: 'AE',
           scope: true,
@@ -41,6 +41,12 @@ angular.module('ionic-sidetabs', [])
                   expandedWidth = window.innerWidth;
                   lastPosX = expandedWidth;
                   $element.css({ width: expandedWidth + 'px', '-webkit-transform' : 'translate3d(' + lastPosX  + 'px, 0,  0)', transform : 'translate3d(' + lastPosX  + 'px, 0,  0)'});
+              }
+
+              function updateUI() {
+                  $timeout(function() {
+                    computeWidths();
+                  }, 300);
               }
 
               this.setHandleWidth = function(width) {
@@ -84,10 +90,9 @@ angular.module('ionic-sidetabs', [])
                   isExpanded = !isExpanded;
               };
 
-              $window.addEventListener('orientationchange', function() {
-                  $timeout(function() {
-                    computeWidths();
-                  }, 500);
+              $ionicPlatform.ready(function() {
+                  $window.addEventListener('orientationchange', updateUI);
+                  $ionicPlatform.on("resume", updateUI);
               });
 
               init();
