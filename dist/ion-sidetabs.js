@@ -1,3 +1,21 @@
+/*
+ionic-sidetabs v1.1.0
+ 
+Copyright 2016 Ariel Faur (https://github.com/arielfaur)
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
 angular.module('ionic-sidetabs', [])
   .directive('ionSideTabs', [function() {
       return {
@@ -21,15 +39,16 @@ angular.module('ionic-sidetabs', [])
   .directive('ionSideTab', ['$timeout', '$window', '$ionicPlatform', function($timeout, $window, $ionicPlatform) {
       return {
           restrict: 'AE',
-          scope: true,
+          scope: {
+            expand: '='
+          },
           transclude: true,
           template: '<ng-transclude></ng-transclude>',
           require: '?^ionSideTabs',
           controller: ['$scope', '$element', function($scope, $element) {
               var tabClass = document.querySelector('.tabs') ? (document.querySelector('.tabs-bottom') ? 'has-tabs' : 'has-tabs-top') : '',
                 headerClass = document.querySelector('.bar-header') ? ' has-header' : '',
-                posX = 0, lastPosX = 0, handleWidth = 0, isExpanded = false,
-                expandedWidth;
+                posX = 0, lastPosX = 0, handleWidth = 0, expandedWidth;
 
               function init() {
                   $element.addClass('padding scroll-content ionic-scroll ' + tabClass + headerClass);
@@ -41,12 +60,25 @@ angular.module('ionic-sidetabs', [])
                   expandedWidth = window.innerWidth;
                   lastPosX = expandedWidth;
                   $element.css({ width: expandedWidth + 'px', '-webkit-transform' : 'translate3d(' + lastPosX  + 'px, 0,  0)', transform : 'translate3d(' + lastPosX  + 'px, 0,  0)'});
+                  $scope.expand = false;
               }
 
               function updateUI() {
                   $timeout(function() {
                     computeWidths();
                   }, 300);
+              }
+              
+              function expand() {
+                  lastPosX = handleWidth;
+                  $scope.tab && $scope.tab.onExpand({ index: $scope.tab.index});
+                  $element.css({'-webkit-transform': 'translate3d(' + lastPosX + 'px, 0, 0)', transform: 'translate3d(' + lastPosX + 'px, 0, 0)'}); 
+              }
+              
+              function collapse() {
+                  lastPosX = expandedWidth;
+                  $scope.tab && $scope.tab.onCollapse({ index: $scope.tab.index});
+                  $element.css({'-webkit-transform': 'translate3d(' + lastPosX + 'px, 0, 0)', transform: 'translate3d(' + lastPosX + 'px, 0, 0)'});  
               }
 
               this.setHandleWidth = function(width) {
@@ -77,23 +109,28 @@ angular.module('ionic-sidetabs', [])
               this.onTap = function(e) {
                   e.gesture.srcEvent.preventDefault();
                   e.gesture.preventDefault();
-
-                  if (!isExpanded) {
-                      lastPosX = handleWidth;
-                    $scope.tab && $scope.tab.onExpand({ index: $scope.tab.index});
-                  } else {
-                      lastPosX = expandedWidth;
-                    $scope.tab && $scope.tab.onCollapse({ index: $scope.tab.index});
-                  }
-                  $element.css({'-webkit-transform': 'translate3d(' + lastPosX + 'px, 0, 0)', transform: 'translate3d(' + lastPosX + 'px, 0, 0)'});
-
-                  isExpanded = !isExpanded;
+                  
+                  $timeout(function() {
+                    $scope.expand = !$scope.expand;
+                  });
               };
 
               $ionicPlatform.ready(function() {
                   $window.addEventListener('orientationchange', updateUI);
                   $ionicPlatform.on("resume", updateUI);
               });
+              
+              var deregisterWatch = $scope.$watch('expand', function(newState, oldState) {
+                  if (newState == oldState) return;
+                  
+                  if (newState) {
+                      expand();
+                  } else {
+                      collapse();
+                  }
+              });
+
+              $scope.$on('$destroy', deregisterWatch);
 
               init();
           }],
@@ -130,7 +167,6 @@ angular.module('ionic-sidetabs', [])
                   'z-index': '100',
                   //boxShadow: '0 1px #888',
                   display: 'flex',
-                  display: '-webkit-flex',
                   '-webkit-align-items': 'center',
                   'align-items': 'center',
                   '-webkit-justify-content': 'center',

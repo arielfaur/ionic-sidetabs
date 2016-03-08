@@ -42,6 +42,10 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistsCtrl', function($scope) {
+  $scope.tab1 = {
+    expand: false   // initial state  
+  };
+  
   $scope.playlists = [
     { title: 'Reggae', id: 1 },
     { title: 'Chill', id: 2 },
@@ -68,6 +72,10 @@ angular.module('starter.controllers', [])
 
   $scope.tabCollapse = function(index) {
     console.log('Tab ' + index + ' collapsed');
+  };
+  
+  $scope.toggleTab1 = function() {
+    $scope.tab1.expand = !$scope.tab1.expand;
   };
 })
 
