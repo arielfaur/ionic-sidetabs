@@ -90,7 +90,12 @@ Side tabs respond to tap and drag events providing an efficient alternative to s
 <p>Defines a single tab. Tabs can be customized using Ionic's theme classes. Special styling such as rounded corners must
 be specified via inline styles or additional css classes.</p>
 
-<pre><code>&lt;ion-side-tab class="dark-bg" style="border-radius: 10px;"&gt;
+<pre><code>&lt;button class="button" ng-click="toggleTab1()"&gt;
+  Toggle Tab 1
+&lt;/button&gt;
+...
+...
+&lt;ion-side-tab class="dark-bg" style="border-radius: 10px;" expand="tab1.expand"&gt;
   &lt;ion-side-tab-handle width="40" height="50" toggle="ion-chevron-left ion-chevron-right" class="dark-bg stable" style="border-radius: 10px 0 0 10px"&gt;&lt;i class="icon ion-chevron-left"&gt;&lt;/i&gt;&lt;/ion-side-tab-handle&gt;
   &lt;div class="list card"&gt;
     &lt;div class="item item-divider"&gt;Upcoming&lt;/div&gt;
@@ -109,6 +114,18 @@ be specified via inline styles or additional css classes.</p>
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/ion-side-tab&gt;
+</code></pre>
+
+<p>To control tabs programmatically use the <code>expand</code> directive parameter in the controller:</p>
+<pre><code>.controller('MyCtrl', function($scope) {
+  $scope.tab1 = {
+    expand: false   // initial state  
+  };
+      
+  $scope.toggleTab1 = function() {
+    $scope.tab1.expand = !$scope.tab1.expand;
+  };
+});  
 </code></pre>
 
 <h3>
