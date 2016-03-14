@@ -1,11 +1,11 @@
 {
   "name": "ionic-sidetab",
   "description": "Ionic Sidetabs",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "homepage": "http://arielfaur.github.io/ionic-sidetabs",
-  "license": "MIT",
+  "license": "Apache License",
   "private": false,
   "devDependencies": {
-    "ionic": "~1.0.x"
+    "ionic": "~1.2.x"
   }
 }

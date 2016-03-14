@@ -1,5 +1,5 @@
 /*
-ionic-sidetabs v1.1.0
+ionic-sidetabs v1.1.1
  
 Copyright 2016 Ariel Faur (https://github.com/arielfaur)
 
@@ -156,7 +156,6 @@ angular.module('ionic-sidetabs', [])
 
               function onTap(e) {
                   controller.onTap(e);
-                  element.find('i').toggleClass(toggleClasses);
               }
 
               element.css({
@@ -181,6 +180,11 @@ angular.module('ionic-sidetabs', [])
                   if (index==0) return;
                   var tabTop = index*height + 10;
                   element.css({top: tabTop + 'px'});
+              });
+              
+              scope.$parent.$watch ('expand', function(newExpand, oldExpand) {
+                  if (newExpand == oldExpand) return;
+                  element.find('i').toggleClass(toggleClasses);  
               });
           }
       }

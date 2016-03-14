@@ -1,18 +1,23 @@
 <ion-view view-title="Playlists">
-  <ion-nav-buttons side="primary">
-      <button class="button" ng-click="toggleTab1()">
-        Toggle Tab 1
-      </button>
-  </ion-nav-buttons>
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-        {{playlist.title}}
-      </ion-item>
+      <ion-checkbox ng-model="tabs.autocollapse">Autocollapse all tabs</ion-checkbox>
+      <a class="item item-icon-left" ng-click="toggleTab('tab1')">
+        <i class="icon ion-arrow-swap"></i>
+        Toggle Tab 1
+      </a>
+      <a class="item item-icon-left" ng-click="toggleTab('tab2')">
+        <i class="icon ion-arrow-swap"></i>
+        Toggle Tab 2
+      </a>
+      <a class="item item-icon-left" ng-click="toggleTab('tab3')">
+        <i class="icon ion-arrow-swap"></i>
+        Toggle Tab 3
+      </a>
     </ion-list>
   </ion-content>
   <ion-side-tabs on-expand="tabExpand(index)" on-collapse="tabCollapse(index)">
-    <ion-side-tab class="dark-bg" style="border-radius: 10px;" expand="tab1.expand">
+    <ion-side-tab class="dark-bg" style="border-radius: 10px;" expand="tabs.tab1">
       <ion-side-tab-handle width="40" height="50" toggle="ion-chevron-left ion-chevron-right" class="dark-bg stable" style="border-radius: 10px 0 0 10px"><i class="icon ion-chevron-left"></i></ion-side-tab-handle>
       <div class="list card">
         <div class="item item-divider">Upcoming</div>
@@ -31,7 +36,7 @@
         </div>
       </div>
     </ion-side-tab>
-    <ion-side-tab class="positive-bg" style="border-radius: 10px;">
+    <ion-side-tab class="positive-bg" style="border-radius: 10px;" expand="tabs.tab2">
       <ion-side-tab-handle width="40" height="50" toggle="ion-chevron-left ion-chevron-right" class="positive-bg" style="border-radius: 10px 0 0 10px"><i class="icon ion-chevron-left"></i></ion-side-tab-handle>
       <div class="list card">
         <div class="item item-divider">Upcoming</div>
@@ -50,7 +55,7 @@
         </div>
       </div>
     </ion-side-tab>
-    <ion-side-tab class="assertive-bg" style="border-radius: 10px;">
+    <ion-side-tab class="assertive-bg" style="border-radius: 10px;" expand="tabs.tab3">
       <ion-side-tab-handle width="40" height="50" toggle="ion-chevron-left ion-chevron-right" class="assertive-bg" style="border-radius: 10px 0 0 10px"><i class="icon ion-chevron-left"></i></ion-side-tab-handle>
       <div class="list card">
         <div class="item item-divider">Upcoming</div>

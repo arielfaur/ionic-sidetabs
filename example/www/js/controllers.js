@@ -42,40 +42,30 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistsCtrl', function($scope) {
-  $scope.tab1 = {
-    expand: false   // initial state  
+  $scope.tabs = {
+    tab1: false,   // initial state
+    tab2: false,
+    tab3: false,
+    autocollapse: false
   };
   
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 },
-    { title: 'Reggae', id: 7 },
-    { title: 'Chill', id: 8 },
-    { title: 'Dubstep', id: 9 },
-    { title: 'Indie', id: 10 },
-    { title: 'Rap', id: 11 },
-    { title: 'Cowbell', id: 12 },
-    { title: 'Reggae', id: 13 },
-    { title: 'Chill', id: 14 },
-    { title: 'Dubstep', id: 15 },
-    { title: 'Indie', id: 16 },
-    { title: 'Rap', id: 17 },
-    { title: 'Cowbell', id: 18 }
-  ];
   $scope.tabExpand = function(index) {
     console.log('Tab ' + index + ' expanded');
   };
 
   $scope.tabCollapse = function(index) {
     console.log('Tab ' + index + ' collapsed');
+    
+    // collapse all tabs
+    if ($scope.tabs.autocollapse){
+      $scope.tabs.tab1=false;
+      $scope.tabs.tab2=false;
+      $scope.tabs.tab3=false;
+    }
   };
   
-  $scope.toggleTab1 = function() {
-    $scope.tab1.expand = !$scope.tab1.expand;
+  $scope.toggleTab = function(tab) {
+    $scope.tabs[tab] = !$scope.tabs[tab];
   };
 })
 
